@@ -4,7 +4,7 @@ Motion Session Tracker is my individual ED2 web app, inspired by our Human Joint
 
 **Live app:** https://yaser-motion-session-tracker.netlify.app
 
-**Demo video (unlisted YouTube):** ADD_VIDEO_LINK_HERE
+**Demo video (unlisted YouTube):** https://youtu.be/3zVGZcE7-iY
 
 ## Features
 
