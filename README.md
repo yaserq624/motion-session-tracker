@@ -1,40 +1,56 @@
 # Motion Session Tracker
 
-A small ED2 prototype for the Human Joint Keypoint Estimation project. Users can register, log in, create motion session records, view them, edit them, delete them, and log out. Each user sees only their own records. This is a planning tracker, not a motion estimation system or a medical record application. Use sample or non-identifying data.
+Motion Session Tracker is my individual ED2 web app, inspired by our Human Joint Keypoint Estimation senior project. It organizes sample motion recording sessions and tracks whether each session is planned, recorded, or reviewed. This is a session planning prototype; it does not analyze video or estimate joint positions.
 
-**Deployed app:** Add your Netlify URL here after deployment.
+**Live app:** https://yaser-motion-session-tracker.netlify.app
 
-**Unlisted demo video:** Add your YouTube URL here after uploading.
+**Demo video (unlisted YouTube):** ADD_VIDEO_LINK_HERE
+
+## Features
+
+- Register, log in, and log out
+- Create a motion session with a title, activity, date, status, and notes
+- View saved sessions and refresh the list
+- Edit or delete a session
+- Keep each user's sessions separate with database access rules
+
+Use only sample or non-identifying information. This prototype is not intended for patient records.
 
 ## Technologies
 
-Vite, vanilla JavaScript, CSS, Supabase Auth and Postgres with Row Level Security, GitHub, Netlify. AI assisted the initial code and documentation; the student should review, configure, test, and explain the result.
+- HTML, CSS, and JavaScript for the interface
+- Vite for local development and building the site
+- Supabase Authentication for accounts
+- Supabase Postgres for storing sessions
+- Row Level Security policies so users can access only their own sessions
+- Git and GitHub for version control
+- Netlify for deployment
 
-## Setup
+I used AI assistance to create the initial code and documentation, then configured the database and deployment, tested the features, and managed the GitHub repository.
 
-1. Create a free Supabase project. Open **SQL Editor**, paste `schema.sql`, and run it once.
-2. In **Project Settings → API**, copy the **Project URL** and **publishable key** (or legacy anon key). Never copy a `service_role` or secret key into this frontend.
-3. Copy `.env.example` to `.env`, replacing its two placeholders. `.env` is ignored by Git.
-4. Install Node.js, then run `npm install` and `npm run dev`. Open the local URL printed by Vite.
-5. Register with an email and password. Depending on the Supabase project's email confirmation setting, confirm the email before login. Create, refresh, edit, and delete a sample session.
-6. Run `npm run build` to create `dist/`.
+## How to run locally
 
-## Deploy
+1. Clone this repository and open it in a terminal.
+2. Run `npm install`.
+3. Create a Supabase project and run the SQL in `schema.sql` using its SQL Editor.
+4. Copy `.env.example` to a new file named `.env`.
+5. Put your Supabase Project URL and publishable key in `.env` using the variable names shown in `.env.example`. Do not use a secret or service-role key.
+6. Run `npm run dev` and open the local URL shown in the terminal.
 
-Create a Netlify site from the public GitHub repo. Set build command `npm run build` and publish directory `dist`. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` under the site's environment variables, then deploy. The publishable key is designed for browser use; data access is restricted by the SQL policies. In Supabase **Authentication → URL Configuration**, set the Site URL to the deployed Netlify URL and add it as a redirect URL so email confirmation returns to the deployed site. Test registration, login, CRUD, and logout on the deployed site.
+The `.env` file is excluded from GitHub. The deployed app uses the same two variable names in Netlify's environment settings.
 
-## Database design
+## Database and access control
 
-`sessions` stores title, activity, date, status, notes, owner ID, and created time. Four Row Level Security policies limit select, insert, update, and delete to the signed in owner. The browser never uses an admin key.
+The `sessions` table stores the session title, activity, date, status, notes, creation time, and the ID of the user who created it. The policies in `schema.sql` restrict reading, creating, editing, and deleting records to the signed-in owner.
 
-## Demo outline (3–5 minutes)
+## Project files
 
-- Show the deployed Netlify URL and explain the project idea.
-- Register a demo user and confirm email if required, then log in.
-- Create a sample session, refresh to show persistence, edit its status, then delete it.
-- Show the `sessions` table in Supabase and explain that each user sees their own rows.
-- Briefly show `src.js`, `style.css`, `schema.sql`, and the README on GitHub, then log out.
+- `src.js` — registration, login, logout, and session operations
+- `style.css` — page design and responsive layout
+- `schema.sql` — database table and access policies
+- `index.html` — page entry point
+- `package.json` — dependencies and development commands
 
-## Submission
+## Demo
 
-Paste the **public GitHub repository URL** into Canvas. Check that the README has both the deployed app URL and the unlisted YouTube demo URL.
+The unlisted video linked above shows the deployed app, account access, creating and managing sessions, data persistence, the Supabase table, and a short walkthrough of the project files.
